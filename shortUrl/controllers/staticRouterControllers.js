@@ -2,14 +2,18 @@ const router = require('../routes/staticRoutes');
 const shortUrl = require('../models/shortUrl');
 
 async function handleGetHomePage(req,res){
-    const urls = await shortUrl.find({});
-    // res.send(urls);
+    if(!req.user) return res.redirect('/login');
+    const urls = await shortUrl.find({createdBy: req.user._id});
     return res.render('home',{
-        urls, 
+        urls:urls, 
     });
-};
+}
 
+async function handleLoginPage(req,res){
+    return res.render('login');
+}
 
 module.exports = {
     handleGetHomePage,
-};
+    handleLoginPage
+}
