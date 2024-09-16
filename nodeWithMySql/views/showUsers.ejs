@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show all users</title>
+</head>
+<body>
+
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>UserName</th>
+            <th>Email</th>
+        </tr>
+        <% users.forEach(element => { %>
+            <tr>
+                <td><%=element.ID%></td>
+                <td><%=element.USERNAME%></td>
+                <td><%=element.EMAIL%></td>
+                <td>
+                    <form method="GET" action="/users/<%=element.ID%>/edit">
+                        <button type="submit">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="/users/<%=element.ID%>?_method=DELETE">
+                        <button type="submit" style="background-color: red;">DELETE</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
+    <form method="post" action="/users">
+        <input type="text" name="id" placeholder="enter id">
+        <input type="text" name="userName" placeholder="enter userName">
+        <input type="text" name="email" placeholder="enter email">
+        <input type="text" name="password" placeholder="enter password">
+
+        <button type="submit">Add New</button>
+    </form>
+</body>
+</html>

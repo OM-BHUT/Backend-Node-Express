@@ -5,8 +5,8 @@ const cookieParser = require('cookie-parser');
 const router = require('./routes/shortUrlRoutes');
 const { bodyParse } = require('./middleWares/index');
 const path = require('path');
-const {restrictToLoggedInOnly,
-    checkAuth,
+const {checkForAuthentication,
+    restrictTo,
 } = require('./middleWares/auth');
 const userRouter = require('./routes/user');
 require('dotenv').config();
@@ -17,10 +17,10 @@ const staticRouter = require('./routes/staticRoutes')
      app.set('view engine','ejs');
      app.set('views',path.resolve('./views'));
      app.use(cookieParser());
-     app.use('/',checkAuth,staticRouter);
+     app.use('/',staticRouter);
      app.use(express.urlencoded({extended: false}))
      app.use(bodyParse());
-    app.use('/shortUrl',router);
+    app.use('/shortUrl',checkForAuthentication,router);
     app.use('/users',userRouter);
      app.listen(process.env.PORT,()=>console.log(`Server Started at ${process.env.PORT}`));
  }).catch(error=>console.log(error));

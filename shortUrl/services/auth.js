@@ -14,7 +14,7 @@ function getUser(token){
     try {
     return jwt.verify(token,process.env.SECRETKEY);
     } catch (error) {
-        console.log('Token Not founded');
+        return console.log(error);
     }
 }
 

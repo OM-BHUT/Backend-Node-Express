@@ -20,8 +20,6 @@ async function handleShortRoutes(req,res){
 
     }else{
         const newShortUrl= shortid();
-        console.log('from handleShortRoutes');
-        console.log(req.user);
         const newUrl = await shortUrl.create({
             shortId:newShortUrl,
             redirectUrl: body.shortUrl,
@@ -32,7 +30,7 @@ async function handleShortRoutes(req,res){
         // res.cookies();
         return res.render('home',{
             shortId:newShortUrl,
-            // urls: urls,
+            urls: urls,
         })
     }
 }

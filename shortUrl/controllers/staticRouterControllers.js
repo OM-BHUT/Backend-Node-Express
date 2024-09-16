@@ -1,4 +1,4 @@
-const router = require('../routes/staticRoutes');
+// const router = require('../routes/staticRoutes');
 const shortUrl = require('../models/shortUrl');
 
 async function handleGetHomePage(req,res){
