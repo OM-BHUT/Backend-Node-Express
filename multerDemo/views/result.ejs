@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Result</title>
+</head>
+<body>
+    <h1>File Uploaded Successfully!</h1>
+    <p>Filename: <%= filename %></p>
+    <p>File path: <a href="<%= filepath %>">View Uploaded File</a></p>
+
+    <!-- Display uploaded file if it's an image -->
+    <h2>Preview:</h2>
+    <img src="<%= filepath %>" alt="Uploaded file preview" width="300">
+</body>
+</html>
